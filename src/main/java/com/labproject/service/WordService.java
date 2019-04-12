@@ -16,6 +16,7 @@ public class WordService {
     {
         Pattern p = Pattern.compile("[^a-z]", Pattern.CASE_INSENSITIVE); //Строка может содержать только буквы латинского алфавита
         Matcher m = p.matcher(word);
+        
         boolean b = m.find();
 
         if(b)
