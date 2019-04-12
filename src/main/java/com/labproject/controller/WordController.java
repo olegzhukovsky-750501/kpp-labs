@@ -32,20 +32,20 @@ public class WordController {
     @RequestMapping("/word/scan")
 
     public ResponseEntity getScanResult(@RequestParam(value = "string") String name) {
-        try {
+        if(name.isEmpty())
+        {
+            logger.info("Cannot take an empty string");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cannot take an empty string");
+        }
+        try
+        {
             Word word = service.scan(name);
-
-            if (word == null) {
-                logger.info("Incorrect string: required word");
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect string: required word");
-            }
-
             logger.info("HTTP status 200, response :" + word.toString());
             return ResponseEntity.ok(word);
         } catch (WordException exc)
         {
-            logger.info("Bad parameters: " + exc.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad parameters: " + exc.getMessage());
+            logger.info("Incorrect string: required word");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect string: required word");
         }
     }
 }

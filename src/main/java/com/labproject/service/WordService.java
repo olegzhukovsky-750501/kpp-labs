@@ -14,21 +14,17 @@ public class WordService {
 
     public Word scan(String word) throws WordException
     {
-        if(word.isEmpty())
-        {
-            throw new WordException("scan cannot take in an empty string");
-        }
         Pattern p = Pattern.compile("[^a-z]", Pattern.CASE_INSENSITIVE); //Строка может содержать только буквы латинского алфавита
         Matcher m = p.matcher(word);
         boolean b = m.find();
 
         if(b)
         {
-            return null;
+            throw new WordException("Incorrect data: string can contain only a-z");
         }
 
         String bufReverse = new StringBuffer(word).reverse().toString().toLowerCase();
-        boolean isPalindrome = ((word.toLowerCase()).compareTo(bufReverse)) == 0 ? true : false;
+        boolean isPalindrome = ((word.toLowerCase()).compareTo(bufReverse)) == 0;
         return new Word(counter.incrementAndGet(), word, word.length(), isPalindrome);
     }
 
