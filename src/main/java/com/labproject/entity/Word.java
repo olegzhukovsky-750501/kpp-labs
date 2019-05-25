@@ -53,14 +53,13 @@ public class Word {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Word word = (Word) o;
-        return  id == word.id &&
-                length == word.length &&
+        return length == word.length &&
                 isPalindrome == word.isPalindrome &&
-                content.equals(word.content);
+                Objects.equals(content, word.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content, length, isPalindrome);
+        return Objects.hash(content, length, isPalindrome);
     }
 }
