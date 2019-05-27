@@ -1,13 +1,23 @@
 package com.labproject.entity;
 
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name= "words")
 public class Word {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+    @Column(name = "content")
     private String content;
+
+    @Column(name = "length")
     private int length;
+
+    @Column(name = "isPalindrome")
     private boolean isPalindrome;
 
     @Override
@@ -20,9 +30,11 @@ public class Word {
                 '}';
     }
 
-    public Word(long id, String content, int length, boolean isPalindrome)
+    public Word(){
+    }
+
+    public Word(String content, int length, boolean isPalindrome)
     {
-        this.id = id;
         this.content = content;
         this.length = length;
         this.isPalindrome = isPalindrome;

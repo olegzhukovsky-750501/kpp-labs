@@ -11,7 +11,7 @@ public class WordServiceTest {
     public void scan() {
         WordService service = new WordService();
 
-        Word actual = new Word(1, "Hello", 5, false);
+        Word actual = new Word("Hello", 5, false);
         Word expected = service.scan(new MyString("Hello"));
 
         Assert.assertEquals(expected, actual);

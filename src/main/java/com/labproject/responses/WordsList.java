@@ -23,6 +23,8 @@ public class WordsList {
         return words;
     }
 
+    public void add(Word word){ words.add(word);}
+
     @Override
     public String toString() {
         return "WordsList{" +
